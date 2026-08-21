@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+  <section class="page-hero shell">
+    <p class="eyebrow"><span></span> Things I’ve made</p>
+    <h1>A growing portfolio built by <em>learning as I go.</em></h1>
+    <p>This first project combines the different parts of web development I’m learning—from Flask routes and templates to database storage, testing, and deployment.</p>
+  </section>
+
+  <section class="project-list shell" aria-label="Featured projects">
+    <article class="project-row">
+      <div class="project-visual visual-coral" aria-hidden="true">
+        <div class="app-mockup">
+          <div class="mockup-top"><i></i><i></i><i></i></div>
+          <div class="mockup-body">
+            <div class="mockup-total"></div>
+            <div class="chart"><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="project-details">
+        <p class="project-index">Project 01</p>
+        <h2>Responsive Portfolio Website</h2>
+        <p>A multi-page Flask portfolio that introduces me, documents my progress, and adapts clearly across desktop and mobile screens.</p>
+        <ul class="tag-list" aria-label="Technologies used">
+          <li>Python</li><li>Flask &amp; Jinja</li><li>HTML &amp; CSS</li>
+        </ul>
+        <p class="lesson"><strong>What I learned:</strong> connecting Flask routes to templates and creating a consistent, responsive interface across several pages.</p>
+      </div>
+    </article>
+
+    <article class="project-row project-row-reverse">
+      <div class="project-visual visual-blue" aria-hidden="true">
+        <div class="app-mockup">
+          <div class="mockup-top"><i></i><i></i><i></i></div>
+          <div class="mockup-body task-lines">
+            <div><i></i><span></span></div><div><i></i><span></span></div><div><i></i><span></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="project-details">
+        <p class="project-index">Project 02</p>
+        <h2>SQLite Visitor Guestbook</h2>
+        <p>An interactive comments wall where visitors can add a message and see it appear alongside earlier notes.</p>
+        <ul class="tag-list" aria-label="Technologies used">
+          <li>Flask-SQLAlchemy</li><li>SQLite</li><li>HTML forms</li>
+        </ul>
+        <p class="lesson"><strong>What I learned:</strong> database models, request handling, form validation, and safely displaying user-submitted content.</p>
+      </div>
+    </article>
+
+    <article class="project-row">
+      <div class="project-visual visual-gold" aria-hidden="true">
+        <div class="app-mockup guestbook-mockup">
+          <div class="mockup-top"><i></i><i></i><i></i></div>
+          <div class="mockup-body message-lines">
+            <div><b></b><span></span></div><div><b></b><span></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="project-details">
+        <p class="project-index">Project 03</p>
+        <h2>Testing &amp; Deployment Setup</h2>
+        <p>The project includes automated checks, a Git-friendly structure, and clear steps for publishing the finished website on PythonAnywhere.</p>
+        <ul class="tag-list" aria-label="Technologies used">
+          <li>Pytest</li><li>Git &amp; GitHub</li><li>PythonAnywhere</li>
+        </ul>
+        <p class="lesson"><strong>What I learned:</strong> how testing builds confidence in a project and how source control prepares it to be shared and deployed.</p>
+        <a class="text-link" href="{{ url_for('comments') }}">Try the live guestbook <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+  </section>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found{% endblock %}
+
+{% block content %}
+  <section class="not-found shell">
+    <p class="eyebrow"><span></span> Error 404</p>
+    <h1>This page wandered off.</h1>
+    <p>The link may be old, or the page may have moved. The portfolio is still right where you left it.</p>
+    <a class="button button-primary" href="{{ url_for('home') }}">Back to the homepage <span aria-hidden="true">→</span></a>
+  </section>
+{% endblock %}

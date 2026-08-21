@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Guestbook{% endblock %}
+
+{% block content %}
+  <section class="guestbook-hero">
+    <div class="shell guestbook-heading">
+      <div>
+        <p class="eyebrow eyebrow-light"><span></span> Flask + SQLite web app</p>
+        <h1>Leave a little note.</h1>
+      </div>
+      <p>This guestbook is the interactive part of my portfolio. Sign in, add a message, and it will appear below for the next visitor.</p>
+    </div>
+  </section>
+
+  <section class="guestbook-section shell">
+    <div class="comments-panel" id="comments-list">
+      <div class="comments-heading">
+        <div>
+          <p class="section-label">Community notes</p>
+          <h2>Messages from visitors</h2>
+        </div>
+        <span class="comment-count">{{ comments|length }} message{% if comments|length != 1 %}s{% endif %}</span>
+      </div>
+
+      <div class="comments-stack">
+        {% for comment in comments %}
+          <article class="comment-card">
+            <div class="comment-avatar" aria-hidden="true">{{ comment.name[0]|upper }}</div>
+            <div>
+              <div class="comment-meta">
+                <h3>{{ comment.name }}</h3>
+                <time datetime="{{ comment.created_at.isoformat() }}">{{ comment.created_at.strftime('%d %b %Y · %H:%M') }}</time>
+              </div>
+              <p>{{ comment.body }}</p>
+            </div>
+          </article>
+        {% else %}
+          <div class="empty-state">
+            <span aria-hidden="true">✦</span>
+            <h3>Be the first to leave a note</h3>
+            <p>Your message will appear here after you submit the form.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <aside class="form-card" id="comment-form" aria-labelledby="form-heading">
+      <p class="section-label">Add your voice</p>
+      {% if current_user.is_authenticated %}
+        <h2 id="form-heading">Write a message</h2>
+        <p class="signed-in-note">Posting as <strong>{{ current_user.username }}</strong></p>
+      {% else %}
+        <h2 id="form-heading">Log in to comment</h2>
+      {% endif %}
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-stack" aria-live="polite">
+            {% for category, message in messages %}
+              <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% if current_user.is_authenticated %}
+        <form method="post" action="{{ url_for('add_comment') }}" data-comment-form>
+          <div class="form-field">
+            <div class="label-row">
+              <label for="body">Your message</label>
+              <span><span data-character-count>0</span>/500</span>
+            </div>
+            <textarea id="body" name="body" rows="6" maxlength="500" required placeholder="Share a thought, question, or hello…"></textarea>
+          </div>
+          <button class="button button-primary button-full" type="submit">Post message <span aria-hidden="true">→</span></button>
+          <p class="privacy-note">Please don’t include private or sensitive information.</p>
+        </form>
+      {% else %}
+        <div class="login-required">
+          <p>Only logged-in users can post. This rule is checked by the Flask server, not just hidden in the page.</p>
+          <a class="button button-primary button-full" href="{{ url_for('login', next=url_for('comments')) }}">Go to login <span aria-hidden="true">→</span></a>
+          <p class="demo-hint">Assignment account: <strong>tester</strong></p>
+        </div>
+      {% endif %}
+    </aside>
+  </section>
+{% endblock %}

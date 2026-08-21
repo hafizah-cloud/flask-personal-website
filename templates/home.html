@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Portfolio{% endblock %}
+
+{% block content %}
+  <section class="hero shell">
+    <div class="hero-copy">
+      <p class="eyebrow"><span></span> Aspiring cloud support professional</p>
+      <h1>Hello, I’m <em>{{ site_owner }}</em>.</h1>
+      <p class="hero-intro">Aspiring Cloud Support Professional with an interest in Python, Linux and cloud technologies.</p>
+      <div class="button-row">
+        <a class="button button-primary" href="{{ url_for('projects') }}">Explore my work <span aria-hidden="true">→</span></a>
+        <a class="button button-quiet" href="{{ url_for('comments') }}">Leave a message</a>
+      </div>
+      <dl class="quick-stats" aria-label="Portfolio highlights">
+        <div><dt>Python</dt><dd>Scripting</dd></div>
+        <div><dt>Linux</dt><dd>Systems</dd></div>
+        <div><dt>Cloud</dt><dd>Career direction</dd></div>
+      </dl>
+    </div>
+
+    <div class="hero-card" aria-label="A short developer profile">
+      <div class="profile-art" aria-hidden="true">
+        <span class="orbit orbit-one"></span>
+        <span class="orbit orbit-two"></span>
+        <div class="initials">{{ owner_initials }}</div>
+      </div>
+      <div class="profile-note">
+        <span class="status-dot" aria-hidden="true"></span>
+        <p><strong>Current focus</strong><br>Python, Linux, and cloud technologies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section shell" aria-labelledby="about-heading">
+    <div class="section-label">01 · About</div>
+    <div class="split-copy">
+      <h2 id="about-heading">Learning the systems behind the cloud.</h2>
+      <div>
+        <p>I’m Hafizah, an aspiring Cloud Support Professional building practical skills in Python, Linux, troubleshooting, and cloud technologies. I enjoy understanding how systems work, solving problems step by step, and documenting what I learn.</p>
+        <p>This portfolio is one part of that journey. I built it with Python and Flask, used SQLite for the guestbook, and deployed it to a cloud hosting environment so it can be accessed from anywhere.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tint">
+    <div class="shell">
+      <div class="section-heading-row">
+        <div>
+          <div class="section-label">02 · Selected work</div>
+          <h2>What I’ve built so far.</h2>
+        </div>
+        <a class="text-link" href="{{ url_for('projects') }}">See all projects <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="project-preview-grid">
+        <article class="preview-card preview-coral">
+          <div class="preview-number">01</div>
+          <div class="preview-window" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <div class="mini-bars"><i></i><i></i><i></i><i></i></div>
+          </div>
+          <p class="project-type">Flask · HTML · CSS</p>
+          <h3>Portfolio Website</h3>
+          <p>A responsive space to introduce myself and document what I’m learning.</p>
+        </article>
+        <article class="preview-card preview-blue">
+          <div class="preview-number">02</div>
+          <div class="preview-window planner-window" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <div class="mini-checks"><i></i><i></i><i></i></div>
+          </div>
+          <p class="project-type">Flask · SQLite</p>
+          <h3>Visitor Guestbook</h3>
+          <p>A working web app that validates and saves visitor messages.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-band">
+    <div class="shell contact-inner">
+      <div>
+        <p class="eyebrow eyebrow-light"><span></span> Let’s connect</p>
+        <h2>Have a suggestion for my cloud learning journey, or just want to say hello?</h2>
+      </div>
+      <a class="button button-light" href="{{ url_for('comments') }}">Write in my guestbook <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+{% endblock %}

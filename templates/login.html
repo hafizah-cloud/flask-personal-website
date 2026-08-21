@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Log in{% endblock %}
+
+{% block content %}
+  <section class="login-page">
+    <div class="login-card">
+      <p class="eyebrow"><span></span> Secure guestbook access</p>
+      <h1>Welcome back.</h1>
+      <p class="login-intro">Log in to post a message to the guestbook.</p>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-stack" aria-live="polite">
+            {% for category, message in messages %}
+              <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form method="post" action="{{ url_for('login', next=request.args.get('next', '')) }}">
+        <div class="form-field">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" maxlength="60" autocomplete="username" required autofocus value="{{ request.form.get('username', '') }}" placeholder="Enter your username">
+        </div>
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="Enter your password">
+        </div>
+        <button class="button button-primary button-full" type="submit">Log in <span aria-hidden="true">→</span></button>
+      </form>
+
+      <div class="demo-credentials">
+        <p class="section-label">Assignment test account</p>
+        <p><strong>Username:</strong> tester<br><strong>Password:</strong> super-secret</p>
+        <small>The password is stored in the database as a one-way hash.</small>
+      </div>
+    </div>
+  </section>
+{% endblock %}

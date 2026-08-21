@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site_owner }} — aspiring cloud support professional interested in Python, Linux, and cloud technologies.">
+    <meta name="theme-color" content="#9A6666">
+    <title>{% block title %}{% endblock %} · {{ site_owner }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="shell nav-wrap">
+        <a class="brand" href="{{ url_for('home') }}" aria-label="{{ site_owner }} — home">
+          <span class="brand-mark" aria-hidden="true">{{ owner_initials }}</span>
+          <span>{{ site_owner }}</span>
+        </a>
+
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </button>
+
+        <nav id="site-navigation" class="site-nav" aria-label="Main navigation">
+          <a href="{{ url_for('home') }}" {% if request.endpoint == 'home' %}aria-current="page"{% endif %}>About</a>
+          <a href="{{ url_for('projects') }}" {% if request.endpoint == 'projects' %}aria-current="page"{% endif %}>Projects</a>
+          <a href="{{ url_for('comments') }}" {% if request.endpoint == 'comments' %}aria-current="page"{% endif %}>Guestbook</a>
+          {% if current_user.is_authenticated %}
+            <span class="nav-user">Signed in as <strong>{{ current_user.username }}</strong></span>
+            <form class="nav-form" method="post" action="{{ url_for('logout') }}">
+              <button class="nav-cta nav-button" type="submit">Log out</button>
+            </form>
+          {% else %}
+            <a class="nav-cta" href="{{ url_for('login') }}" {% if request.endpoint == 'login' %}aria-current="page"{% endif %}>Log in</a>
+          {% endif %}
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-grid">
+        <div>
+          <a class="footer-brand" href="{{ url_for('home') }}">{{ site_owner }}</a>
+          <p>Learning Python, Linux, and cloud technologies.</p>
+        </div>
+        <div class="footer-links" aria-label="Footer navigation">
+          <a href="{{ url_for('projects') }}">Projects</a>
+          <a href="{{ url_for('comments') }}">Guestbook</a>
+          {% if current_user.is_authenticated %}
+            <form class="footer-login-form" method="post" action="{{ url_for('logout') }}"><button type="submit">Log out</button></form>
+          {% else %}
+            <a href="{{ url_for('login') }}">Log in</a>
+          {% endif %}
+          <a href="{{ linkedin_url }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+        <p class="copyright">© <span data-current-year>2026</span> {{ site_owner }}. Built with Flask.</p>
+      </div>
+    </footer>
+  </body>
+</html>
