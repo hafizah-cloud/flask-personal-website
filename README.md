@@ -4,6 +4,12 @@ A responsive portfolio website with an authenticated, SQLite-backed guestbook. I
 
 The profile presents Hafizah as an aspiring Cloud Support Professional with an interest in Python, Linux, and cloud technologies. Its visual identity uses a warm mocha-rose palette supplied by Hafizah.
 
+## Live Demo
+
+Visit the deployed application at [fxzvh.pythonanywhere.com](https://fxzvh.pythonanywhere.com/).
+
+The public portfolio and project pages are open to everyone. The guestbook requires the demonstration login documented below before a visitor can post a comment.
+
 ## Project Overview
 
 This project is a responsive personal portfolio and secure guestbook application built with Python and Flask. It allows visitors to explore portfolio content, while authenticated users can log in and post comments to the guestbook.
