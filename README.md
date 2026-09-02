@@ -10,6 +10,16 @@ This project is a responsive personal portfolio and secure guestbook application
 
 The project demonstrates web development, database management, authentication, password security, server-side validation, responsive design, and automated testing.
 
+## Project Previews
+
+### Portfolio Homepage
+
+![Flask portfolio homepage preview](flask-homepage-preview.png)
+
+### Secure Guestbook
+
+![Flask guestbook preview](flask-guestbook-preview.png)
+
 ## Technologies Used
 
 - Python
